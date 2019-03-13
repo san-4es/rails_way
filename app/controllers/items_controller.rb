@@ -30,15 +30,10 @@ class ItemsController < ApplicationController
   def destroy
   end
 
-  def
   private
 
   def item_params
     params.require(:item).permit(:name, :price, :weight, :real)
-    #p params
-    #@item = Item.create(name: params[:name], description: params[:description], price: params[:price], real: params[:real], weight: params[:weight])
-    #puts "ITEM: #{@item.valid?}, #{@item.errors.full_messages}"
-    #render plain: "#{@item.id}: #{@item.name} (#{!@item.new_record?})"
   end  
 
 end
