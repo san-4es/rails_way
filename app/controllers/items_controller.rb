@@ -16,6 +16,7 @@ class ItemsController < ApplicationController
   
   #/items/new GET
   def new
+    @item = Item.new
   end
   
   #/items/1/edit GET
@@ -24,8 +25,14 @@ class ItemsController < ApplicationController
   
   #/items POST
   def create
-    @item = Item.create(item_params)
-  end  
+    @item = Item.new(item_params)
+
+    if @item.save
+      redirect_to item_path(@item)
+    else
+      render :new
+    end
+  end
   
   #/items/1 PUT
   def update
@@ -38,7 +45,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :price, :weight, :real)
+    params.require(:item).permit(:name, :price, :weight, :real, :description)
   end  
 
 end
