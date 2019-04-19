@@ -21,6 +21,7 @@ class ItemsController < ApplicationController
   
   #/items/1/edit GET
   def edit
+    @item = Item.find(params[:id])
   end
   
   #/items POST
@@ -30,19 +31,27 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to item_path(@item)
     else
-      render :new
+      render :new  
     end
   end
   
   #/items/1 PUT
   def update
+     @item = Item.find(params[:id])
+     #@item.update_attributes(params[:item])
+     @item.update(item_params)
+    if @item.save
+      redirect_to item_path(@item)
+    else
+      render :new
+    end
   end
   
   #/items/1 DELETE
   def destroy
   end
 
-  private
+  private 
 
   def item_params
     params.require(:item).permit(:name, :price, :weight, :real, :description)
