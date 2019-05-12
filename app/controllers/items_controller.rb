@@ -31,14 +31,13 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to item_path(@item)
     else
-      render :new  
+      render :new
     end
   end
   
   #/items/1 PUT
   def update
      @item = Item.find(params[:id])
-     #@item.update_attributes(params[:item])
      @item.update(item_params)
     if @item.save
       redirect_to item_path(@item)
@@ -49,9 +48,12 @@ class ItemsController < ApplicationController
   
   #/items/1 DELETE
   def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    redirect_to action: "index"
   end
 
-  private 
+  private
 
   def item_params
     params.require(:item).permit(:name, :price, :weight, :real, :description)
