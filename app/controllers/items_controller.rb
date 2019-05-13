@@ -39,7 +39,7 @@ class ItemsController < ApplicationController
   def update
      @item = Item.find(params[:id])
      @item.update(item_params)
-    if @item.save
+    if @item.update(item_params)
       redirect_to item_path(@item)
     else
       render :new
@@ -50,7 +50,7 @@ class ItemsController < ApplicationController
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
-    redirect_to action: "index"
+    redirect_to items_path
   end
 
   private

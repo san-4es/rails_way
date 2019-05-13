@@ -3,9 +3,7 @@
 <% if @items.empty? %>
   <b>No items in store </b>
 <% else %>
-<% end %>
-
-<table>
+  <table>
   <tr>
     <th>item id</th>
     <th>Name</th>
@@ -21,5 +19,7 @@
     <td><%= i.price %> руб.</td>
     <td><%= link_to "Удалить", i, method: :delete, data: { confirm: "Точно удалить?"} %></td>
   </tr>
+<% end %>
+
 
 <% end %>
