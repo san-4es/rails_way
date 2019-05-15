@@ -1,9 +1,9 @@
 <h1>Items</h1>
 
 <% if @items.empty? %>
-  <b>No items in store </b>
+  <b>No items in store</b>
 <% else %>
-  <table>
+<table>
   <tr>
     <th>item id</th>
     <th>Name</th>
@@ -11,15 +11,16 @@
     <th></th>
   </tr>
 
-<% @items.each do |i| %>
+  <% @items.each do |i| %>
 
   <tr>
     <td><%= i.id %></td>
-    <p><%= link_to i.name, item_path(i) %></p>
+    <td><%= link_to i.name, item_path(i) %></td>
     <td><%= i.price %> руб.</td>
     <td><%= link_to "Удалить", i, method: :delete, data: { confirm: "Точно удалить?"} %></td>
   </tr>
-<% end %>
 
+<% end %>
+</table>
 
 <% end %>
